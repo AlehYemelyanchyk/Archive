@@ -1,4 +1,4 @@
-package by.epam.ayem.main.server.service.model;
+package by.epam.ayem.main.server.model;
 
 /*Задание 3: создайте клиент-серверное приложение "Архив".
     Общие требования к заданию:
@@ -8,6 +8,8 @@ package by.epam.ayem.main.server.service.model;
 Требования к коду:
 1. Для реализации сетевого соединения используйте сокеты.
 2. Формат хранения данных на сервере - xml-файлы.*/
+
+import java.util.Objects;
 
 public class User {
 
@@ -55,6 +57,11 @@ public class User {
             return false;
         }
         User newUser = (User) obj;
+
+        if (this.getName() == null || this.email == null ||
+                newUser.getName() == null || newUser.getEmail() == null) {
+            return false;
+        }
         return this.getName().equals(newUser.getName()) &&
                 this.getEmail().equals(newUser.getEmail());
     }
@@ -64,8 +71,21 @@ public class User {
         int result = 1;
         result += (31 * this.getName().hashCode());
         result += (31 * this.getEmail().hashCode());
-        result += (31 * this.getPassword().hashCode());
-        result += (31 * this.getRole().hashCode());
         return result;
     }
+
+
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        User user = (User) o;
+//        return Objects.equals(name, user.name) &&
+//                Objects.equals(email, user.email);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(name, email);
+//    }
 }

@@ -1,4 +1,4 @@
-package by.epam.ayem.main.server.service.model;
+package by.epam.ayem.main.server.model;
 
 /*Задание 3: создайте клиент-серверное приложение "Архив".
     Общие требования к заданию:
