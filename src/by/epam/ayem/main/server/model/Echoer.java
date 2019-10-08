@@ -1,4 +1,6 @@
-package by.epam.ayem.main.server.service;
+package by.epam.ayem.main.server.model;
+
+import by.epam.ayem.main.server.service.ServerService;
 
 import java.io.BufferedReader;
 import java.io.IOException;

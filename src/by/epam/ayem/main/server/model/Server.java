@@ -9,8 +9,6 @@ package by.epam.ayem.main.server.model;
 1. Для реализации сетевого соединения используйте сокеты.
 2. Формат хранения данных на сервере - xml-файлы.*/
 
-import by.epam.ayem.main.server.service.Echoer;
-
 import java.net.*;
 import java.io.*;
 
