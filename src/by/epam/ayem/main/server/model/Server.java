@@ -9,14 +9,12 @@ package by.epam.ayem.main.server.model;
 1. Для реализации сетевого соединения используйте сокеты.
 2. Формат хранения данных на сервере - xml-файлы.*/
 
-import by.epam.ayem.main.server.service.ServerService;
+import by.epam.ayem.main.server.service.Echoer;
 
 import java.net.*;
 import java.io.*;
 
 public class Server {
-
-    private ServerService serverService = new ServerService();
 
     public void runServer() {
         // запускаю сервер на порту 8000
@@ -24,56 +22,7 @@ public class Server {
             System.out.println("Server started.");
 
             while (true) {
-
-                // ожидаю подключения к сокету под именем - "client" на серверной стороне
-                Socket clientSocket = serverSocket.accept();
-
-                // сервер выводит сообщение о подключившемся клиенте с этим сокет-соединением.
-                System.out.println("Client accepted.");
-
-                // инициирую каналы для общения в сокете для сервера
-
-                // канал записи в сокет
-                OutputStreamWriter outputWriter =
-                        new OutputStreamWriter(
-                                clientSocket.getOutputStream());
-
-                // канал чтения из сокета
-                BufferedReader inputReader = new BufferedReader(
-                        new InputStreamReader(
-                                clientSocket.getInputStream()));
-
-                // начинаю диалог с подключенным клиентом в цикле, пока сокет не закрыт
-
-                String response;
-                String request;
-                serverService.readWhenStart();
-
-                do {
-                    request = inputReader.readLine();
-
-                    response = serverService.enterToArchive(request);
-                    outputWriter.write(response + "\n");
-                    outputWriter.flush();
-                } while (!response.contains("Welcome"));
-
-                while (true) {
-                    request = inputReader.readLine();
-                    response = serverService.showMenu(request);
-
-                    if (response.equals("exit")) {
-                        outputWriter.write(response + "\n");
-                        outputWriter.flush();
-                        break;
-                    }
-                    outputWriter.write(response + "\n");
-                    outputWriter.flush();
-                }
-
-
-                outputWriter.close();
-                inputReader.close();
-                clientSocket.close();
+                new Echoer(serverSocket.accept()).start();
             }
         } catch (
                 IOException e) {
