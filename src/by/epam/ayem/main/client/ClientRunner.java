@@ -1,4 +1,4 @@
-package com.alehyemelyanchyk;
+package by.epam.ayem.main.client;
 
 /*Задание 3: создайте клиент-серверное приложение "Архив".
     Общие требования к заданию:
@@ -9,7 +9,8 @@ package com.alehyemelyanchyk;
 1. Для реализации сетевого соединения используйте сокеты.
 2. Формат хранения данных на сервере - xml-файлы.*/
 
-import com.alehyemelyanchyk.model.Client;
+
+import by.epam.ayem.main.client.model.Client;
 
 public class ClientRunner {
 

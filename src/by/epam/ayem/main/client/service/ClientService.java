@@ -1,4 +1,4 @@
-package com.alehyemelyanchyk.service;
+package by.epam.ayem.main.client.service;
 
 /*Задание 3: создайте клиент-серверное приложение "Архив".
     Общие требования к заданию:
