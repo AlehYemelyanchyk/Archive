@@ -9,6 +9,8 @@ package by.epam.ayem.main.server.model;
 1. Для реализации сетевого соединения используйте сокеты.
 2. Формат хранения данных на сервере - xml-файлы.*/
 
+import by.epam.ayem.main.server.service.ServerService;
+
 import java.net.*;
 import java.io.*;
 
@@ -20,7 +22,7 @@ public class Server {
             System.out.println("Server started.");
 
             while (true) {
-                new Echoer(serverSocket.accept()).start();
+                new ServerService(serverSocket.accept()).start();
             }
         } catch (
                 IOException e) {

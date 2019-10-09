@@ -60,14 +60,6 @@ public class ArchiveRepository {
                     }
                 }
 
-                // Метод вызывается, когда SAXParser натыкается на конец тэга. Считывается только qName.
-                @Override
-                public void endElement(String uri, String localName, String qName) {
-                    if (qName.equals("student")) {
-                        student = true;
-                    }
-                }
-
                 // Метод вызывается, когда SAXParser считывет текст между тэгами.
                 @Override
                 public void characters(char[] ch, int start, int length) {
@@ -82,10 +74,8 @@ public class ArchiveRepository {
                         name = false;
                     } else if (group) {
                         studentGroup = new String(ch, start, length);
-                        group = false;
-                    } else if (student) {
                         studentsBase.getStudents().add(new Student(studentId, studentSurname, studentName, studentGroup));
-                        student = false;
+                        group = false;
                     }
                 }
             };

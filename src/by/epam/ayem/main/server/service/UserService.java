@@ -13,26 +13,26 @@ import by.epam.ayem.main.server.model.*;
 
 public class UserService {
 
-    public String logIn(UserBase userBase, String[] command) {
+    public User logIn(UserBase userBase, String[] command) {
         for (User user : userBase.getUsers()) {
             boolean sameUser = isSameUser(command[1], command[2], command[3], user);
             if (sameUser) {
                 userBase.setCurrentUser(user);
-                return "Welcome, " + user.getName() + ".";
+                return user;
             }
         }
-        return "The user has not found.";
+        return null;
     }
 
-    private String logIn(UserBase userBase, String name, String email, String password) {
+    private User logIn(UserBase userBase, String name, String email, String password) {
         for (User user : userBase.getUsers()) {
             boolean sameUser = isSameUser(name, email, password, user);
             if (sameUser) {
                 userBase.setCurrentUser(user);
-                return "Welcome, " + user.getName() + ".";
+                return user;
             }
         }
-        return "The user has not found.";
+        return null;
     }
 
     private boolean isSameUser(String name, String email, String password, User user) {
@@ -41,7 +41,7 @@ public class UserService {
                 user.getPassword().equals(String.valueOf(password.hashCode()));
     }
 
-    public String signUp(UserBase userBase, String[] command) {
+    public User signUp(UserBase userBase, String[] command) {
         if (userBase.getUsers().isEmpty()) {
             userBase.getUsers().add(new User(command[1], command[2], String.valueOf(command[3].hashCode()), UserRole.ADMINISTRATOR));
             return logIn(userBase, command[1], command[2], command[3]);
@@ -52,7 +52,7 @@ public class UserService {
         if (isUserExist(userBase, newUser)) {
             userBase.getUsers().add(newUser);
         } else {
-            return "A user with such name already exists.";
+            return null;
         }
         return logIn(userBase, command[1], command[2], command[3]);
     }

@@ -13,6 +13,7 @@ import by.epam.ayem.main.client.service.ClientArchiveApp;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.Arrays;
 
 public class Client {
 
@@ -33,13 +34,14 @@ public class Client {
             String sessionID = "";
             String[] responseLogIn = {response, sessionID};
 
-            while (!responseLogIn[0].equalsIgnoreCase("exit") && !responseLogIn[0].contains("Welcome")) {
+            while (!responseLogIn[0].contains("Welcome")) {
                 String enterRequest = clientArchiveApp.enterToArchive();
                 outputWriter.write(enterRequest + "\n");
                 outputWriter.flush();
                 responseLogIn = inputReader.readLine().split(";");
-                System.out.println(responseLogIn[0]);
             }
+
+            System.out.println(responseLogIn[0]+", "+responseLogIn[1]);
 
             while (!response.equalsIgnoreCase("exit")) {
                 String request;

@@ -2,14 +2,14 @@
 <archive>
     <student>
         <id>1</id>
-        <surname>pietrov</surname>
-        <name>vasia</name>
-        <group_number>555</group_number>
+        <surname>Kulibin</surname>
+        <name>Anatol</name>
+        <group_number>55</group_number>
     </student>
     <student>
         <id>2</id>
-        <surname>sanchez</surname>
-        <name>sasha</name>
-        <group_number>555</group_number>
+        <surname>Vasko</surname>
+        <name>Sasha</name>
+        <group_number>55</group_number>
     </student>
 </archive>
